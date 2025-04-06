@@ -24,6 +24,8 @@ ChartJS.register(
 function Weather() {
   const [weather, setWeather] = useState(null);
   const [hourlyRain, setHourlyRain] = useState(Array(24).fill(0));
+  const [hourlyTemp, setHourlyTemp] = useState(Array(24).fill(0)); // New state for temperature
+  const [hourlyHumidity, setHourlyHumidity] = useState(Array(24).fill(0)); // New state for humidity
   const [dailyForecast, setDailyForecast] = useState([]);
   const [error, setError] = useState(null);
   const [currentDate, setCurrentDate] = useState("");
@@ -49,13 +51,21 @@ function Weather() {
           );
           const forecastData = await forecastResponse.json();
 
-          // Extract hourly rain chance
+          // Extract hourly data
           const rainData = Array(24).fill(0);
+          const tempData = Array(24).fill(0);
+          const humidityData = Array(24).fill(0);
+
           forecastData.list.forEach((hour) => {
             const hourIndex = new Date(hour.dt * 1000).getHours();
             rainData[hourIndex] = hour.pop * 100; // Probability of precipitation (pop) is a percentage
+            tempData[hourIndex] = hour.main.temp; // Temperature
+            humidityData[hourIndex] = hour.main.humidity; // Humidity
           });
+
           setHourlyRain(rainData);
+          setHourlyTemp(tempData);
+          setHourlyHumidity(humidityData);
 
           // Extract daily forecast summary
           const dailyData = {};
@@ -89,7 +99,7 @@ function Weather() {
     );
   }, []);
 
-  // Prepare data for the hourly rain chart
+  // Prepare data for the hourly chart
   const chartData = {
     labels: Array.from({ length: 24 }, (_, i) => `${i}:00`), // Labels from 0:00 to 23:00
     datasets: [
@@ -98,6 +108,20 @@ function Weather() {
         data: hourlyRain,
         backgroundColor: "rgba(54, 162, 235, 0.6)",
         borderColor: "rgba(54, 162, 235, 1)",
+        borderWidth: 1,
+      },
+      {
+        label: "Temperature (°C)",
+        data: hourlyTemp,
+        backgroundColor: "rgba(255, 99, 132, 0.6)",
+        borderColor: "rgba(255, 99, 132, 1)",
+        borderWidth: 1,
+      },
+      {
+        label: "Humidity (%)",
+        data: hourlyHumidity,
+        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
       },
     ],
@@ -111,7 +135,7 @@ function Weather() {
       },
       title: {
         display: true,
-        text: "Hourly Rain Chance",
+        text: "Hourly Weather Data",
       },
     },
     scales: {
@@ -124,10 +148,9 @@ function Weather() {
       y: {
         title: {
           display: true,
-          text: "Rain Chance (%)",
+          text: "Values",
         },
         beginAtZero: true,
-        max: 100,
       },
     },
   };
