@@ -1,59 +1,73 @@
-# Template Project
+# Weather Application
 
-This is a template project using Express.js and Vite.
+## Description
+
+This project is a weather application that provides real-time weather updates for various locations. It fetches data from a weather API and displays it in a user-friendly format.
 
 ## Features
 
-- Serves static files from the `dist` directory.
-- Configurable via environment variables.
-- Includes a basic Express.js server.
+- Real-time weather updates
+- Search weather by city or location
+- Displays temperature, humidity, wind speed, and more
+- Responsive design for mobile and desktop
 
-## Setup
+## Installation
 
 1. Clone the repository:
-
    ```bash
-   git clone <repository-url>
-   cd template
+   git clone https://github.com/your-username/weather.git
    ```
-
-2. Install dependencies:
-
+2. Navigate to the project directory:
    ```bash
-   pnpm install
+   cd weather
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
    ```
 
-3. Create a `.env` file in the root directory and configure the following variables:
+## Usage
+
+1. Start the application:
+   ```bash
+   npm start
    ```
-   PORT=3000
+2. Open your browser and navigate to:
+   ```
+   http://localhost:3000
    ```
 
-## Development
+## Technologies Used
 
-To start the development server:
+- JavaScript/TypeScript
+- Node.js
+- React.js (or any frontend framework used)
+- Weather API (e.g., OpenWeatherMap)
 
-```bash
-pnpm dev
-```
+## Contributing
 
-## Build
+Contributions are welcome! Please follow these steps:
 
-To build the project for production:
-
-```bash
-pnpm build
-```
-
-## Production
-
-To start the production server:
-
-```bash
-pnpm start
-```
-
-Ensure the `dist` directory is built before starting the server.
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add feature-name"
+   ```
+4. Push to your branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Open a pull request.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+## Acknowledgements
+
+- [OpenWeatherMap](https://openweathermap.org/) for the weather API.
+- Any other libraries or tools used.
