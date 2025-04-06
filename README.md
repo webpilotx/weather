@@ -21,26 +21,31 @@ This project is a weather application that provides real-time weather updates fo
    ```bash
    cd weather
    ```
-3. Install dependencies:
+3. Install dependencies using `pnpm`:
+
    ```bash
-   npm install
+   pnpm install
    ```
+
+4. Create a `.env` file in the root directory and add the required environment variables. For example:
+   ```env
+   OPENWEATHER_API_KEY=your_weather_api_key
+   ```
+   Replace `your_weather_api_key` with your actual API key from the weather API provider.
 
 ## Usage
 
-1. Start the application:
+1. Start the application using Vite:
    ```bash
-   npm start
+   pnpm run dev
    ```
-2. Open your browser and navigate to:
-   ```
-   http://localhost:3000
-   ```
+2. Open your browser and navigate to the URL provided by Vite (e.g., `http://localhost:5173`).
 
 ## Technologies Used
 
 - JavaScript/TypeScript
 - Node.js
+- Vite.js
 - React.js (or any frontend framework used)
 - Weather API (e.g., OpenWeatherMap)
 
