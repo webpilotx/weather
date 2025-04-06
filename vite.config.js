@@ -5,7 +5,7 @@ import api from "./api.js";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/weather",
+  base: "/weather/",
   plugins: [
     tailwindcss(),
     react(),
